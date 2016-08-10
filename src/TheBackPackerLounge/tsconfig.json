@@ -1,0 +1,20 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "es5",
+    "module": "system",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules",
+    "wwwroot",
+    "Scripts/app"
+  ]
+}
