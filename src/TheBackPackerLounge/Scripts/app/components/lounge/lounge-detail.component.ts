@@ -1,5 +1,4 @@
 ﻿import {Component, OnInit, OnDestroy} from "@angular/core";
-import {HTTP_PROVIDERS} from "@angular/http";
 import {Router, ActivatedRoute} from "@angular/router";
 import {AppService} from "../../services/app.service";
 import {Lounge} from "../../viewmodels/lounge";
@@ -25,10 +24,6 @@ import {Lounge} from "../../viewmodels/lounge";
                <button (click)='onBack()'>Back to Home</button>
         </div>
     `,
-    providers: [
-        HTTP_PROVIDERS,
-        AppService
-    ],
     styles: [`
         .item-details {
             margin: 5px;

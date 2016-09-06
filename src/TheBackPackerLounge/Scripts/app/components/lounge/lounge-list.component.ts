@@ -1,9 +1,7 @@
 ﻿import {Component, OnInit} from "@angular/core";
-import {HTTP_PROVIDERS} from "@angular/http";
 import {Router} from "@angular/router";
 import {Lounge} from "../../viewmodels/lounge";
 import {AppService} from "../../services/app.service";
-import {LoungeDetailComponent} from "./lounge-detail.component";
 
 @Component({
     selector: "lounge-list",
@@ -24,12 +22,7 @@ import {LoungeDetailComponent} from "./lounge-detail.component";
         ul.items li:hover { 
             background-color: #E8FAEC; 
         }
-    `],
-    directives: [LoungeDetailComponent],
-    providers: [
-        HTTP_PROVIDERS,
-        AppService
-    ]
+    `]
 })
 
 export class LoungeListComponent implements OnInit {

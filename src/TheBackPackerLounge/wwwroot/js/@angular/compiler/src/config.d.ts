@@ -13,16 +13,12 @@ export declare class CompilerConfig {
     private _genDebugInfo;
     private _logBindingUpdate;
     useJit: boolean;
-    platformDirectives: any[];
-    platformPipes: any[];
-    constructor({renderTypes, defaultEncapsulation, genDebugInfo, logBindingUpdate, useJit, platformDirectives, platformPipes}?: {
+    constructor({renderTypes, defaultEncapsulation, genDebugInfo, logBindingUpdate, useJit}?: {
         renderTypes?: RenderTypes;
         defaultEncapsulation?: ViewEncapsulation;
         genDebugInfo?: boolean;
         logBindingUpdate?: boolean;
         useJit?: boolean;
-        platformDirectives?: any[];
-        platformPipes?: any[];
     });
     genDebugInfo: boolean;
     logBindingUpdate: boolean;

@@ -1,18 +1,18 @@
 {
   "_args": [
     [
-      "@angular/compiler@2.0.0-rc.4",
-      "c:\\users\\vdurano\\documents\\visual studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge"
+      "@angular/compiler@2.0.0-rc.6",
+      "C:\\Users\\vdurano\\Documents\\Visual Studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge"
     ]
   ],
-  "_from": "@angular/compiler@2.0.0-rc.4",
-  "_id": "@angular/compiler@2.0.0-rc.4",
+  "_from": "@angular/compiler@2.0.0-rc.6",
+  "_id": "@angular/compiler@2.0.0-rc.6",
   "_inCache": true,
   "_location": "/@angular/compiler",
   "_nodeVersion": "5.4.1",
   "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/compiler-2.0.0-rc.4.tgz_1467308849422_0.7418568241409957"
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/compiler-2.0.0-rc.6.tgz_1472686600902_0.48821444041095674"
   },
   "_npmUser": {
     "email": "angular-core+npm@google.com",
@@ -22,20 +22,20 @@
   "_phantomChildren": {},
   "_requested": {
     "name": "@angular/compiler",
-    "raw": "@angular/compiler@2.0.0-rc.4",
-    "rawSpec": "2.0.0-rc.4",
+    "raw": "@angular/compiler@2.0.0-rc.6",
+    "rawSpec": "2.0.0-rc.6",
     "scope": "@angular",
-    "spec": "2.0.0-rc.4",
+    "spec": "2.0.0-rc.6",
     "type": "version"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@angular/compiler/-/compiler-2.0.0-rc.4.tgz",
-  "_shasum": "1cb82028b8ed732009cf4c82dbc7f3385dca3684",
+  "_resolved": "https://registry.npmjs.org/@angular/compiler/-/compiler-2.0.0-rc.6.tgz",
+  "_shasum": "e0bf153d214aa37b77ce25dcdb2193151ef4da5c",
   "_shrinkwrap": null,
-  "_spec": "@angular/compiler@2.0.0-rc.4",
-  "_where": "c:\\users\\vdurano\\documents\\visual studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge",
+  "_spec": "@angular/compiler@2.0.0-rc.6",
+  "_where": "C:\\Users\\vdurano\\Documents\\Visual Studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge",
   "author": {
     "name": "angular"
   },
@@ -43,28 +43,28 @@
     "url": "https://github.com/angular/angular/issues"
   },
   "dependencies": {},
-  "description": "",
+  "description": "Angular2 - compiler",
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "1cb82028b8ed732009cf4c82dbc7f3385dca3684",
-    "tarball": "https://registry.npmjs.org/@angular/compiler/-/compiler-2.0.0-rc.4.tgz"
+    "shasum": "e0bf153d214aa37b77ce25dcdb2193151ef4da5c",
+    "tarball": "https://registry.npmjs.org/@angular/compiler/-/compiler-2.0.0-rc.6.tgz"
   },
   "homepage": "https://github.com/angular/angular#readme",
   "installable": true,
-  "jsnext:main": "esm/index.js",
   "license": "MIT",
-  "main": "index.js",
+  "main": "bundles/compiler.umd.js",
   "maintainers": [
     {
       "name": "angular",
       "email": "angular-core+npm@google.com"
     }
   ],
+  "module": "index.js",
   "name": "@angular/compiler",
   "optionalDependencies": {},
   "peerDependencies": {
-    "@angular/core": "^2.0.0-rc.4"
+    "@angular/core": "^2.0.0-rc.6"
   },
   "repository": {
     "type": "git",
@@ -72,5 +72,5 @@
   },
   "scripts": {},
   "typings": "index.d.ts",
-  "version": "2.0.0-rc.4"
+  "version": "2.0.0-rc.6"
 }

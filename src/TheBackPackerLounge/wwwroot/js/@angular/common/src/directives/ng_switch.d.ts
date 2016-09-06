@@ -16,7 +16,7 @@ export declare class SwitchView {
 /**
  * Adds or removes DOM sub-trees when their match expressions match the switch expression.
  *
- * Elements within `NgSwitch` but without `ngSwitchCase` or `NgSwitchDefault` directives will be
+ * Elements within `NgSwitch` but without `NgSwitchCase` or `NgSwitchDefault` directives will be
  * preserved at the location as specified in the template.
  *
  * `NgSwitch` simply inserts nested elements based on which match expression matches the value
@@ -56,7 +56,7 @@ export declare class SwitchView {
  *       <template ngSwitchDefault>&gt; 2, STOP!</template>
  *     </p>
  *   `,
- *   directives: [NgSwitch, ngSwitchCase, NgSwitchDefault]
+ *   directives: [NgSwitch, NgSwitchCase, NgSwitchDefault]
  * })
  * export class App {
  *   value = 'init';
@@ -65,11 +65,9 @@ export declare class SwitchView {
  *     this.value = this.value === 'init' ? 0 : this.value + 1;
  *   }
  * }
- *
- * bootstrap(App).catch(err => console.error(err));
  * ```
  *
- * @experimental
+ * @stable
  */
 export declare class NgSwitch {
     private _switchValue;
@@ -86,13 +84,12 @@ export declare class NgSwitch {
  *
  * See {@link NgSwitch} for more details and example.
  *
- * @experimental
+ * @stable
  */
 export declare class NgSwitchCase {
     private _switch;
     constructor(viewContainer: ViewContainerRef, templateRef: TemplateRef<Object>, ngSwitch: NgSwitch);
     ngSwitchCase: any;
-    ngSwitchWhen: any;
 }
 /**
  * Default case statements are displayed when no match expression matches the switch expression
@@ -100,7 +97,7 @@ export declare class NgSwitchCase {
  *
  * See {@link NgSwitch} for more details and example.
  *
- * @experimental
+ * @stable
  */
 export declare class NgSwitchDefault {
     constructor(viewContainer: ViewContainerRef, templateRef: TemplateRef<Object>, sswitch: NgSwitch);

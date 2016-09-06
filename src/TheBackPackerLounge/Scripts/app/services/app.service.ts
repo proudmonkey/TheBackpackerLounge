@@ -7,8 +7,9 @@ import {Observable} from "rxjs/Observable";
 export class AppService {
     constructor(private http: Http) { }
 
-    private loungeBaseUrl = 'api/lounge/';  // URL to web api
-    private placeBaseUrl = 'api/place/';  // URL to web api
+     // URL to web api
+    private loungeBaseUrl = 'api/lounge/';
+    private placeBaseUrl = 'api/place/'; 
 
     getLatestDiscussion(num?: number) {
         var url = this.loungeBaseUrl + "GetLatestDiscussion/";

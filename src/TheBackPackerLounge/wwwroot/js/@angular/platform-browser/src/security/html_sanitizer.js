@@ -5,10 +5,9 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-"use strict";
-var core_1 = require('@angular/core');
-var dom_adapter_1 = require('../dom/dom_adapter');
-var url_sanitizer_1 = require('./url_sanitizer');
+import { isDevMode } from '@angular/core';
+import { getDOM } from '../dom/dom_adapter';
+import { sanitizeSrcset, sanitizeUrl } from './url_sanitizer';
 /** A <body> element that can be safely used to parse untrusted HTML. Lazily initialized below. */
 var inertElement = null;
 /** Lazily initialized to make sure the DOM adapter gets set before use. */
@@ -17,7 +16,7 @@ var DOM = null;
 function getInertElement() {
     if (inertElement)
         return inertElement;
-    DOM = dom_adapter_1.getDOM();
+    DOM = getDOM();
     // Prefer using <template> element if supported.
     var templateEl = DOM.createElement('template');
     if ('content' in templateEl)
@@ -38,7 +37,7 @@ function tagSet(tags) {
     var res = {};
     for (var _i = 0, _a = tags.split(','); _i < _a.length; _i++) {
         var t = _a[_i];
-        res[t.toLowerCase()] = true;
+        res[t] = true;
     }
     return res;
 }
@@ -99,6 +98,9 @@ var VALID_ATTRS = merge(URI_ATTRS, SRCSET_ATTRS, HTML_ATTRS);
  */
 var SanitizingHtmlSerializer = (function () {
     function SanitizingHtmlSerializer() {
+        // Explicitly track if something was stripped, to avoid accidentally warning of sanitization just
+        // because characters were re-encoded.
+        this.sanitizedSomething = false;
         this.buf = [];
     }
     SanitizingHtmlSerializer.prototype.sanitizeChildren = function (el) {
@@ -113,6 +115,10 @@ var SanitizingHtmlSerializer = (function () {
             else if (DOM.isTextNode(current)) {
                 this.chars(DOM.nodeValue(current));
             }
+            else {
+                // Strip non-element, non-text nodes.
+                this.sanitizedSomething = true;
+            }
             if (DOM.firstChild(current)) {
                 current = DOM.firstChild(current);
                 continue;
@@ -120,7 +126,7 @@ var SanitizingHtmlSerializer = (function () {
             while (current) {
                 // Leaving the element. Walk up and to the right, closing tags as we go.
                 if (DOM.isElementNode(current)) {
-                    this.endElement(DOM.nodeName(current).toLowerCase());
+                    this.endElement(current);
                 }
                 if (DOM.nextSibling(current)) {
                     current = DOM.nextSibling(current);
@@ -134,30 +140,33 @@ var SanitizingHtmlSerializer = (function () {
     SanitizingHtmlSerializer.prototype.startElement = function (element) {
         var _this = this;
         var tagName = DOM.nodeName(element).toLowerCase();
-        tagName = tagName.toLowerCase();
-        if (VALID_ELEMENTS.hasOwnProperty(tagName)) {
-            this.buf.push('<');
-            this.buf.push(tagName);
-            DOM.attributeMap(element).forEach(function (value, attrName) {
-                var lower = attrName.toLowerCase();
-                if (!VALID_ATTRS.hasOwnProperty(lower))
-                    return;
-                // TODO(martinprobst): Special case image URIs for data:image/...
-                if (URI_ATTRS[lower])
-                    value = url_sanitizer_1.sanitizeUrl(value);
-                if (SRCSET_ATTRS[lower])
-                    value = url_sanitizer_1.sanitizeSrcset(value);
-                _this.buf.push(' ');
-                _this.buf.push(attrName);
-                _this.buf.push('="');
-                _this.buf.push(encodeEntities(value));
-                _this.buf.push('"');
-            });
-            this.buf.push('>');
+        if (!VALID_ELEMENTS.hasOwnProperty(tagName)) {
+            this.sanitizedSomething = true;
+            return;
         }
+        this.buf.push('<');
+        this.buf.push(tagName);
+        DOM.attributeMap(element).forEach(function (value, attrName) {
+            var lower = attrName.toLowerCase();
+            if (!VALID_ATTRS.hasOwnProperty(lower)) {
+                _this.sanitizedSomething = true;
+                return;
+            }
+            // TODO(martinprobst): Special case image URIs for data:image/...
+            if (URI_ATTRS[lower])
+                value = sanitizeUrl(value);
+            if (SRCSET_ATTRS[lower])
+                value = sanitizeSrcset(value);
+            _this.buf.push(' ');
+            _this.buf.push(attrName);
+            _this.buf.push('="');
+            _this.buf.push(encodeEntities(value));
+            _this.buf.push('"');
+        });
+        this.buf.push('>');
     };
-    SanitizingHtmlSerializer.prototype.endElement = function (tagName) {
-        tagName = tagName.toLowerCase();
+    SanitizingHtmlSerializer.prototype.endElement = function (current) {
+        var tagName = DOM.nodeName(current).toLowerCase();
         if (VALID_ELEMENTS.hasOwnProperty(tagName) && !VOID_ELEMENTS.hasOwnProperty(tagName)) {
             this.buf.push('</');
             this.buf.push(tagName);
@@ -178,14 +187,14 @@ var NON_ALPHANUMERIC_REGEXP = /([^\#-~ |!])/g;
  * @param value
  * @returns {string} escaped text
  */
-function encodeEntities(value /** TODO #9100 */) {
+function encodeEntities(value) {
     return value.replace(/&/g, '&amp;')
-        .replace(SURROGATE_PAIR_REGEXP, function (match /** TODO #9100 */) {
+        .replace(SURROGATE_PAIR_REGEXP, function (match) {
         var hi = match.charCodeAt(0);
         var low = match.charCodeAt(1);
         return '&#' + (((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000) + ';';
     })
-        .replace(NON_ALPHANUMERIC_REGEXP, function (match /** TODO #9100 */) { return '&#' + match.charCodeAt(0) + ';'; })
+        .replace(NON_ALPHANUMERIC_REGEXP, function (match) { return '&#' + match.charCodeAt(0) + ';'; })
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
 }
@@ -212,7 +221,7 @@ function stripCustomNsAttrs(el) {
  * Sanitizes the given unsafe, untrusted HTML fragment, and returns HTML text that is safe to add to
  * the DOM in a browser environment.
  */
-function sanitizeHtml(unsafeHtmlInput) {
+export function sanitizeHtml(unsafeHtmlInput) {
     try {
         var containerEl = getInertElement();
         // Make sure unsafeHtml is actually a string (TypeScript types are not enforced at runtime).
@@ -242,7 +251,7 @@ function sanitizeHtml(unsafeHtmlInput) {
             var child = _a[_i];
             DOM.removeChild(parent_1, child);
         }
-        if (core_1.isDevMode() && safeHtml !== unsafeHtmlInput) {
+        if (isDevMode() && sanitizer.sanitizedSomething) {
             DOM.log('WARNING: sanitizing HTML stripped some content (see http://g.co/ng/security#xss).');
         }
         return safeHtml;
@@ -253,5 +262,4 @@ function sanitizeHtml(unsafeHtmlInput) {
         throw e;
     }
 }
-exports.sanitizeHtml = sanitizeHtml;
 //# sourceMappingURL=html_sanitizer.js.map

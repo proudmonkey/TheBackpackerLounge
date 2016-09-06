@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { ChangeDetectorRef, ComponentRef, DebugElement, ElementRef, NgZone } from '../index';
+import { ChangeDetectorRef, ComponentRef, DebugElement, ElementRef, NgZone } from '@angular/core';
 /**
  * Fixture for debugging and testing a component.
  *
@@ -19,7 +19,7 @@ export declare class ComponentFixture<T> {
     /**
      * The instance of the root component class.
      */
-    componentInstance: any;
+    componentInstance: T;
     /**
      * The native element at the root of the component.
      */
@@ -42,7 +42,9 @@ export declare class ComponentFixture<T> {
     ngZone: NgZone;
     private _autoDetect;
     private _isStable;
-    private _completer;
+    private _isDestroyed;
+    private _resolve;
+    private _promise;
     private _onUnstableSubscription;
     private _onStableSubscription;
     private _onMicrotaskEmptySubscription;

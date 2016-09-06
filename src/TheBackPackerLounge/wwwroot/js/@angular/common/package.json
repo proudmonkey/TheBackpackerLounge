@@ -1,18 +1,18 @@
 {
   "_args": [
     [
-      "@angular/common@2.0.0-rc.4",
-      "c:\\users\\vdurano\\documents\\visual studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge"
+      "@angular/common@2.0.0-rc.6",
+      "C:\\Users\\vdurano\\Documents\\Visual Studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge"
     ]
   ],
-  "_from": "@angular/common@2.0.0-rc.4",
-  "_id": "@angular/common@2.0.0-rc.4",
+  "_from": "@angular/common@2.0.0-rc.6",
+  "_id": "@angular/common@2.0.0-rc.6",
   "_inCache": true,
   "_location": "/@angular/common",
   "_nodeVersion": "5.4.1",
   "_npmOperationalInternal": {
     "host": "packages-16-east.internal.npmjs.com",
-    "tmp": "tmp/common-2.0.0-rc.4.tgz_1467308843670_0.22182463691569865"
+    "tmp": "tmp/common-2.0.0-rc.6.tgz_1472686595816_0.17442426388151944"
   },
   "_npmUser": {
     "email": "angular-core+npm@google.com",
@@ -22,20 +22,20 @@
   "_phantomChildren": {},
   "_requested": {
     "name": "@angular/common",
-    "raw": "@angular/common@2.0.0-rc.4",
-    "rawSpec": "2.0.0-rc.4",
+    "raw": "@angular/common@2.0.0-rc.6",
+    "rawSpec": "2.0.0-rc.6",
     "scope": "@angular",
-    "spec": "2.0.0-rc.4",
+    "spec": "2.0.0-rc.6",
     "type": "version"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@angular/common/-/common-2.0.0-rc.4.tgz",
-  "_shasum": "c3b0a87cd1e316be2a940bb80319e055898f89e6",
+  "_resolved": "https://registry.npmjs.org/@angular/common/-/common-2.0.0-rc.6.tgz",
+  "_shasum": "83a0b563a77c84f4765e6e1552382a0caf0eef3c",
   "_shrinkwrap": null,
-  "_spec": "@angular/common@2.0.0-rc.4",
-  "_where": "c:\\users\\vdurano\\documents\\visual studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge",
+  "_spec": "@angular/common@2.0.0-rc.6",
+  "_where": "C:\\Users\\vdurano\\Documents\\Visual Studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge",
   "author": {
     "name": "angular"
   },
@@ -47,24 +47,24 @@
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "c3b0a87cd1e316be2a940bb80319e055898f89e6",
-    "tarball": "https://registry.npmjs.org/@angular/common/-/common-2.0.0-rc.4.tgz"
+    "shasum": "83a0b563a77c84f4765e6e1552382a0caf0eef3c",
+    "tarball": "https://registry.npmjs.org/@angular/common/-/common-2.0.0-rc.6.tgz"
   },
   "homepage": "https://github.com/angular/angular#readme",
   "installable": true,
-  "jsnext:main": "esm/index.js",
   "license": "MIT",
-  "main": "index.js",
+  "main": "bundles/common.umd.js",
   "maintainers": [
     {
       "name": "angular",
       "email": "angular-core+npm@google.com"
     }
   ],
+  "module": "index.js",
   "name": "@angular/common",
   "optionalDependencies": {},
   "peerDependencies": {
-    "@angular/core": "^2.0.0-rc.4"
+    "@angular/core": "^2.0.0-rc.6"
   },
   "repository": {
     "type": "git",
@@ -72,5 +72,5 @@
   },
   "scripts": {},
   "typings": "index.d.ts",
-  "version": "2.0.0-rc.4"
+  "version": "2.0.0-rc.6"
 }

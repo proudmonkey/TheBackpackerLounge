@@ -7,9 +7,26 @@
  */
 import { AnimationEntryMetadata } from '../animation/metadata';
 import { ChangeDetectionStrategy } from '../change_detection/constants';
-import { InjectableMetadata } from '../di/metadata';
-import { Type } from '../facade/lang';
+import { InjectableMetadata, Provider } from '../di';
+import { Type } from '../type';
 import { ViewEncapsulation } from './view';
+/**
+ * Interface for creating {@link DirectiveMetadata}
+ * @stable
+ */
+export interface DirectiveMetadataType {
+    selector?: string;
+    inputs?: string[];
+    outputs?: string[];
+    host?: {
+        [key: string]: string;
+    };
+    providers?: any[];
+    exportAs?: string;
+    queries?: {
+        [key: string]: any;
+    };
+}
 /**
  * Directives allow you to attach behavior to elements in the DOM.
  *
@@ -46,7 +63,7 @@ import { ViewEncapsulation } from './view';
  * current `ElementInjector` resolves the constructor dependencies for each directive.
  *
  * Angular then resolves dependencies as follows, according to the order in which they appear in the
- * {@link ViewMetadata}:
+ * {@link ComponentMetadata}:
  *
  * 1. Dependencies on the current element
  * 2. Dependencies on element injectors and their parents until it encounters a Shadow DOM boundary
@@ -295,7 +312,8 @@ import { ViewEncapsulation } from './view';
  * location in the current view
  * where these actions are performed.
  *
- * Views are always created as children of the current {@link ViewMetadata}, and as siblings of the
+ * Views are always created as children of the current {@link ComponentMetadata}, and as siblings of
+ * the
  * `<template>` element. Thus a
  * directive in a child view cannot inject the directive that created it.
  *
@@ -328,8 +346,9 @@ import { ViewEncapsulation } from './view';
  *
  * ## Lifecycle hooks
  *
- * When the directive class implements some {@link ../../guide/lifecycle-hooks.html} the callbacks
- * are called by the change detection at defined points in time during the life of the directive.
+ * When the directive class implements some {@linkDocs guide/lifecycle-hooks} the
+ * callbacks are called by the change detection at defined points in time during the life of the
+ * directive.
  *
  * ### Example
  *
@@ -387,10 +406,9 @@ import { ViewEncapsulation } from './view';
  * Note also that although the `<li></li>` template still exists inside the `<template></template>`,
  * the instantiated
  * view occurs on the second `<li></li>` which is a sibling to the `<template>` element.
- * @ts2dart_const
  * @stable
  */
-export declare class DirectiveMetadata extends InjectableMetadata {
+export declare class DirectiveMetadata extends InjectableMetadata implements DirectiveMetadataType {
     /**
      * The CSS selector that triggers the instantiation of a directive.
      *
@@ -462,24 +480,14 @@ export declare class DirectiveMetadata extends InjectableMetadata {
      *   selector: 'app',
      *   template: `
      *     <bank-account bank-name="RBC" account-id="4747"></bank-account>
-     *   `,
-     *   directives: [BankAccount]
+     *   `
      * })
      * class App {}
-     *
-     * bootstrap(App);
      * ```
      *
      */
     inputs: string[];
-    /**
-     * Use `inputs` instead
-     *
-     * @deprecated
-     */
-    properties: string[];
     private _inputs;
-    private _properties;
     /**
      * Enumerates the set of event-bound output properties.
      *
@@ -514,26 +522,17 @@ export declare class DirectiveMetadata extends InjectableMetadata {
      *   template: `
      *     <interval-dir (everySecond)="everySecond()" (everyFiveSeconds)="everyFiveSeconds()">
      *     </interval-dir>
-     *   `,
-     *   directives: [IntervalDir]
+     *   `
      * })
      * class App {
      *   everySecond() { console.log('second'); }
      *   everyFiveSeconds() { console.log('five seconds'); }
      * }
-     * bootstrap(App);
      * ```
      *
      */
     outputs: string[];
-    /**
-     * Use `outputs` instead
-     *
-     * @deprecated
-     */
-    events: string[];
     private _outputs;
-    private _events;
     /**
      * Specify the events, actions, properties and attributes related to the host element.
      *
@@ -574,12 +573,9 @@ export declare class DirectiveMetadata extends InjectableMetadata {
      *
      * @Component({
      *   selector: 'app',
-     *   template: `<button counting>Increment</button>`,
-     *   directives: [CountClicks]
+     *   template: `<button counting>Increment</button>`
      * })
      * class App {}
-     *
-     * bootstrap(App);
      * ```
      *
      * ## Host Property Bindings
@@ -610,14 +606,11 @@ export declare class DirectiveMetadata extends InjectableMetadata {
      *
      * @Component({
      *   selector: 'app',
-     *   template: `<input [(ngModel)]="prop">`,
-     *   directives: [FORM_DIRECTIVES, NgModelStatus]
+     *   template: `<input [(ngModel)]="prop">`
      * })
      * class App {
      *   prop;
      * }
-     *
-     * bootstrap(App);
      * ```
      *
      * ## Attributes
@@ -673,7 +666,7 @@ export declare class DirectiveMetadata extends InjectableMetadata {
      * }
      * ```
      */
-    providers: any[];
+    providers: Provider[];
     private _providers;
     /**
      * Defines the name that can be used in the template to assign this directive to a variable.
@@ -690,8 +683,7 @@ export declare class DirectiveMetadata extends InjectableMetadata {
      *
      * @Component({
      *   selector: 'main',
-     *   template: `<child-dir #c="child"></child-dir>`,
-     *   directives: [ChildDir]
+     *   template: `<child-dir #c="child"></child-dir>`
      * })
      * class MainComponent {
      * }
@@ -714,8 +706,7 @@ export declare class DirectiveMetadata extends InjectableMetadata {
      *     contentChildren: new ContentChildren(ChildDirective),
      *     viewChildren: new ViewChildren(ChildDirective)
      *   },
-     *   template: '<child-directive></child-directive>',
-     *   directives: [ChildDirective]
+     *   template: '<child-directive></child-directive>'
      * })
      * class SomeDir {
      *   contentChildren: QueryList<ChildDirective>,
@@ -734,21 +725,24 @@ export declare class DirectiveMetadata extends InjectableMetadata {
     queries: {
         [key: string]: any;
     };
-    constructor({selector, inputs, outputs, properties, events, host, providers, exportAs, queries}?: {
-        selector?: string;
-        inputs?: string[];
-        outputs?: string[];
-        /** @deprecated */ properties?: string[];
-        /** @deprecated */ events?: string[];
-        host?: {
-            [key: string]: string;
-        };
-        providers?: any[];
-        exportAs?: string;
-        queries?: {
-            [key: string]: any;
-        };
-    });
+    constructor({selector, inputs, outputs, host, providers, exportAs, queries}?: DirectiveMetadataType);
+}
+/**
+ * Interface for creating {@link ComponentMetadataType}
+ * @stable
+ */
+export interface ComponentMetadataType extends DirectiveMetadataType {
+    changeDetection?: ChangeDetectionStrategy;
+    viewProviders?: any[];
+    moduleId?: string;
+    templateUrl?: string;
+    template?: string;
+    styleUrls?: string[];
+    styles?: string[];
+    animations?: AnimationEntryMetadata[];
+    encapsulation?: ViewEncapsulation;
+    interpolation?: [string, string];
+    entryComponents?: Array<Type<any> | any[]>;
 }
 /**
  * Declare reusable UI building blocks for an application.
@@ -765,20 +759,18 @@ export declare class DirectiveMetadata extends InjectableMetadata {
  *
  * All template expressions and statements are then evaluated against the component instance.
  *
- * For details on the `@View` annotation, see {@link ViewMetadata}.
- *
  * ## Lifecycle hooks
  *
- * When the component class implements some {@link ../../guide/lifecycle-hooks.html} the callbacks
- * are called by the change detection at defined points in time during the life of the component.
+ * When the component class implements some {@linkDocs guide/lifecycle-hooks} the
+ * callbacks are called by the change detection at defined points in time during the life of the
+ * component.
  *
  * ### Example
  *
  * {@example core/ts/metadata/metadata.ts region='component'}
- * @ts2dart_const
  * @stable
  */
-export declare class ComponentMetadata extends DirectiveMetadata {
+export declare class ComponentMetadata extends DirectiveMetadata implements ComponentMetadataType {
     /**
      * Defines the used change detection strategy.
      *
@@ -819,15 +811,14 @@ export declare class ComponentMetadata extends DirectiveMetadata {
      *   viewProviders: [
      *     Greeter
      *   ],
-     *   template: `<needs-greeter></needs-greeter>`,
-     *   directives: [NeedsGreeter]
+     *   template: `<needs-greeter></needs-greeter>`
      * })
      * class HelloWorld {
      * }
      *
      * ```
      */
-    viewProviders: any[];
+    viewProviders: Provider[];
     private _viewProviders;
     /**
      * The module id of the module that contains the component.
@@ -835,8 +826,6 @@ export declare class ComponentMetadata extends DirectiveMetadata {
      * In CommonJS, this can always be set to `module.id`, similarly SystemJS exposes `__moduleName`
      * variable within each module.
      *
-     * In Dart, this can be determined automatically and does not need to be set.
-  
      *
      * ## Simple Example
      *
@@ -851,9 +840,29 @@ export declare class ComponentMetadata extends DirectiveMetadata {
      * ```
      */
     moduleId: string;
+    /**
+     * Specifies a template URL for an Angular component.
+     *
+     * NOTE: Only one of `templateUrl` or `template` can be defined per View.
+     *
+     * <!-- TODO: what's the url relative to? -->
+     */
     templateUrl: string;
+    /**
+     * Specifies an inline template for an Angular component.
+     *
+     * NOTE: Only one of `templateUrl` or `template` can be defined per View.
+     */
     template: string;
+    /**
+     * Specifies stylesheet URLs for an Angular component.
+     *
+     * <!-- TODO: what's the url relative to? -->
+     */
     styleUrls: string[];
+    /**
+     * Specifies an inline stylesheet for an Angular component.
+     */
     styles: string[];
     /**
      * Animations are defined on components via an animation-like DSL. This DSL approach to describing
@@ -927,45 +936,30 @@ export declare class ComponentMetadata extends DirectiveMetadata {
      * - {@link keyframes keyframes()}
      */
     animations: AnimationEntryMetadata[];
-    directives: Array<Type | any[]>;
-    pipes: Array<Type | any[]>;
+    /**
+     * Specify how the template and the styles should be encapsulated.
+     * The default is {@link ViewEncapsulation#Emulated `ViewEncapsulation.Emulated`} if the view
+     * has styles,
+     * otherwise {@link ViewEncapsulation#None `ViewEncapsulation.None`}.
+     */
     encapsulation: ViewEncapsulation;
     interpolation: [string, string];
     /**
-     * Defines the components that should be precompiled as well when
+     * Defines the components that should be compiled as well when
      * this component is defined. For each components listed here,
      * Angular will create a {@link ComponentFactory ComponentFactory} and store it in the
      * {@link ComponentFactoryResolver ComponentFactoryResolver}.
      */
-    precompile: Array<Type | any[]>;
-    constructor({selector, inputs, outputs, properties, events, host, exportAs, moduleId, providers, viewProviders, changeDetection, queries, templateUrl, template, styleUrls, styles, animations, directives, pipes, encapsulation, interpolation, precompile}?: {
-        selector?: string;
-        inputs?: string[];
-        outputs?: string[];
-        /** @deprecated */ properties?: string[];
-        /** @deprecated */ events?: string[];
-        host?: {
-            [key: string]: string;
-        };
-        providers?: any[];
-        exportAs?: string;
-        moduleId?: string;
-        viewProviders?: any[];
-        queries?: {
-            [key: string]: any;
-        };
-        changeDetection?: ChangeDetectionStrategy;
-        templateUrl?: string;
-        template?: string;
-        styleUrls?: string[];
-        styles?: string[];
-        animations?: AnimationEntryMetadata[];
-        directives?: Array<Type | any[]>;
-        pipes?: Array<Type | any[]>;
-        encapsulation?: ViewEncapsulation;
-        interpolation?: [string, string];
-        precompile?: Array<Type | any[]>;
-    });
+    entryComponents: Array<Type<any> | any[]>;
+    constructor({selector, inputs, outputs, host, exportAs, moduleId, providers, viewProviders, changeDetection, queries, templateUrl, template, styleUrls, styles, animations, encapsulation, interpolation, entryComponents}?: ComponentMetadataType);
+}
+/**
+ * Interface for creating {@link PipeMetadata}
+ * @stable
+ */
+export interface PipeMetadataType {
+    name: string;
+    pure?: boolean;
 }
 /**
  * Declare reusable pipe function.
@@ -977,15 +971,11 @@ export declare class ComponentMetadata extends DirectiveMetadata {
  * ### Example
  *
  * {@example core/ts/metadata/metadata.ts region='pipe'}
- * @ts2dart_const
  * @stable
  */
-export declare class PipeMetadata extends InjectableMetadata {
+export declare class PipeMetadata extends InjectableMetadata implements PipeMetadataType {
     name: string;
-    constructor({name, pure}: {
-        name: string;
-        pure?: boolean;
-    });
+    constructor({name, pure}: PipeMetadataType);
     pure: boolean;
 }
 /**
@@ -1021,14 +1011,11 @@ export declare class PipeMetadata extends InjectableMetadata {
  *   selector: 'app',
  *   template: `
  *     <bank-account bank-name="RBC" account-id="4747"></bank-account>
- *   `,
- *   directives: [BankAccount]
+ *   `
  * })
- * class App {}
  *
- * bootstrap(App);
+ * class App {}
  * ```
- * @ts2dart_const
  * @stable
  */
 export declare class InputMetadata {
@@ -1073,16 +1060,13 @@ export declare class InputMetadata {
  *   template: `
  *     <interval-dir (everySecond)="everySecond()" (everyFiveSeconds)="everyFiveSeconds()">
  *     </interval-dir>
- *   `,
- *   directives: [IntervalDir]
+ *   `
  * })
  * class App {
  *   everySecond() { console.log('second'); }
  *   everyFiveSeconds() { console.log('five seconds'); }
  * }
- * bootstrap(App);
  * ```
- * @ts2dart_const
  * @stable
  */
 export declare class OutputMetadata {
@@ -1114,16 +1098,12 @@ export declare class OutputMetadata {
  *
  * @Component({
  *   selector: 'app',
- *   template: `<input [(ngModel)]="prop">`,
- *   directives: [FORM_DIRECTIVES, NgModelStatus]
+ *   template: `<input [(ngModel)]="prop">`
  * })
  * class App {
  *   prop;
  * }
- *
- * bootstrap(App);
  * ```
- * @ts2dart_const
  * @stable
  */
 export declare class HostBindingMetadata {
@@ -1156,14 +1136,10 @@ export declare class HostBindingMetadata {
  *
  * @Component({
  *   selector: 'app',
- *   template: `<button counting>Increment</button>`,
- *   directives: [CountClicks]
+ *   template: `<button counting>Increment</button>`
  * })
  * class App {}
- *
- * bootstrap(App);
  * ```
- * @ts2dart_const
  * @stable
  */
 export declare class HostListenerMetadata {

@@ -14,5 +14,4 @@ namespace TheBackPackerLounge.Data.ViewModels
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
     }
-
 }

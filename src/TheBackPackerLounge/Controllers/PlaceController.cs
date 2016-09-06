@@ -44,6 +44,7 @@ namespace TheBackPackerLounge.Controllers
             var data = GetTestData().OrderByDescending(i => i.ViewCount).Take(n);
             return new JsonResult(data, DefaultJsonSettings);
         }
+
         private List<PlaceViewModel> GetTestData(int num = 999)
         {
             List<PlaceViewModel> list = new List<PlaceViewModel>();

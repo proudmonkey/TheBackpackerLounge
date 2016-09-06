@@ -12,12 +12,14 @@ import { AbstractControl } from '../model';
  *
  * Only used internally in the forms module.
  *
- * @experimental
+ * @stable
  */
 export declare abstract class AbstractControlDirective {
     control: AbstractControl;
     value: any;
     valid: boolean;
+    invalid: boolean;
+    pending: boolean;
     errors: {
         [key: string]: any;
     };
@@ -25,7 +27,10 @@ export declare abstract class AbstractControlDirective {
     dirty: boolean;
     touched: boolean;
     untouched: boolean;
+    disabled: boolean;
+    enabled: boolean;
     statusChanges: Observable<any>;
     valueChanges: Observable<any>;
     path: string[];
+    reset(value?: any): void;
 }

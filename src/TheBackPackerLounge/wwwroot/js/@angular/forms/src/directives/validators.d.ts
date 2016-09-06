@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { OnChanges, SimpleChanges } from '@angular/core';
 import { AbstractControl } from '../model';
 /**
  * An interface that can be implemented by classes that can act as validators.
@@ -16,12 +24,13 @@ import { AbstractControl } from '../model';
  * }
  * ```
  *
- * @experimental
+ * @stable
  */
 export interface Validator {
     validate(c: AbstractControl): {
         [key: string]: any;
     };
+    registerOnChange?(fn: () => void): void;
 }
 export declare const REQUIRED_VALIDATOR: any;
 /**
@@ -34,12 +43,19 @@ export declare const REQUIRED_VALIDATOR: any;
  * <input name="fullName" ngModel required>
  * ```
  *
- * @experimental
+ * @stable
  */
-export declare class RequiredValidator {
+export declare class RequiredValidator implements Validator {
+    private _required;
+    private _onChange;
+    required: boolean;
+    validate(c: AbstractControl): {
+        [key: string]: any;
+    };
+    registerOnChange(fn: () => void): void;
 }
 /**
- * @experimental
+ * @stable
  */
 export interface ValidatorFn {
     (c: AbstractControl): {
@@ -47,13 +63,13 @@ export interface ValidatorFn {
     };
 }
 /**
- * @experimental
+ * @stable
  */
 export interface AsyncValidatorFn {
     (c: AbstractControl): any;
 }
 /**
- * Provivder which adds {@link MinLengthValidator} to {@link NG_VALIDATORS}.
+ * Provider which adds {@link MinLengthValidator} to {@link NG_VALIDATORS}.
  *
  * ## Example:
  *
@@ -64,14 +80,18 @@ export declare const MIN_LENGTH_VALIDATOR: any;
  * A directive which installs the {@link MinLengthValidator} for any `formControlName`,
  * `formControl`, or control with `ngModel` that also has a `minlength` attribute.
  *
- * @experimental
+ * @stable
  */
-export declare class MinLengthValidator implements Validator {
+export declare class MinLengthValidator implements Validator, OnChanges {
     private _validator;
-    constructor(minLength: string);
+    private _onChange;
+    minlength: string;
+    private _createValidator();
+    ngOnChanges(changes: SimpleChanges): void;
     validate(c: AbstractControl): {
         [key: string]: any;
     };
+    registerOnChange(fn: () => void): void;
 }
 /**
  * Provider which adds {@link MaxLengthValidator} to {@link NG_VALIDATORS}.
@@ -86,14 +106,18 @@ export declare const MAX_LENGTH_VALIDATOR: any;
  * `formControl`,
  * or control with `ngModel` that also has a `maxlength` attribute.
  *
- * @experimental
+ * @stable
  */
-export declare class MaxLengthValidator implements Validator {
+export declare class MaxLengthValidator implements Validator, OnChanges {
     private _validator;
-    constructor(maxLength: string);
+    private _onChange;
+    maxlength: string;
+    private _createValidator();
+    ngOnChanges(changes: SimpleChanges): void;
     validate(c: AbstractControl): {
         [key: string]: any;
     };
+    registerOnChange(fn: () => void): void;
 }
 export declare const PATTERN_VALIDATOR: any;
 /**
@@ -107,12 +131,16 @@ export declare const PATTERN_VALIDATOR: any;
  * ```
  * <input [name]="fullName" pattern="[a-zA-Z ]*" ngModel>
  * ```
- * @experimental
+ * @stable
  */
-export declare class PatternValidator implements Validator {
+export declare class PatternValidator implements Validator, OnChanges {
     private _validator;
-    constructor(pattern: string);
+    private _onChange;
+    pattern: string;
+    private _createValidator();
+    ngOnChanges(changes: SimpleChanges): void;
     validate(c: AbstractControl): {
         [key: string]: any;
     };
+    registerOnChange(fn: () => void): void;
 }

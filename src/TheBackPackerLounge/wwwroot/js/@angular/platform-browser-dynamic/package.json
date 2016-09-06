@@ -1,18 +1,18 @@
 {
   "_args": [
     [
-      "@angular/platform-browser-dynamic@2.0.0-rc.4",
-      "c:\\users\\vdurano\\documents\\visual studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge"
+      "@angular/platform-browser-dynamic@2.0.0-rc.6",
+      "C:\\Users\\vdurano\\Documents\\Visual Studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge"
     ]
   ],
-  "_from": "@angular/platform-browser-dynamic@2.0.0-rc.4",
-  "_id": "@angular/platform-browser-dynamic@2.0.0-rc.4",
+  "_from": "@angular/platform-browser-dynamic@2.0.0-rc.6",
+  "_id": "@angular/platform-browser-dynamic@2.0.0-rc.6",
   "_inCache": true,
   "_location": "/@angular/platform-browser-dynamic",
   "_nodeVersion": "5.4.1",
   "_npmOperationalInternal": {
-    "host": "packages-16-east.internal.npmjs.com",
-    "tmp": "tmp/platform-browser-dynamic-2.0.0-rc.4.tgz_1467308883902_0.3862463873811066"
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/platform-browser-dynamic-2.0.0-rc.6.tgz_1472686629007_0.46484073251485825"
   },
   "_npmUser": {
     "email": "angular-core+npm@google.com",
@@ -22,20 +22,20 @@
   "_phantomChildren": {},
   "_requested": {
     "name": "@angular/platform-browser-dynamic",
-    "raw": "@angular/platform-browser-dynamic@2.0.0-rc.4",
-    "rawSpec": "2.0.0-rc.4",
+    "raw": "@angular/platform-browser-dynamic@2.0.0-rc.6",
+    "rawSpec": "2.0.0-rc.6",
     "scope": "@angular",
-    "spec": "2.0.0-rc.4",
+    "spec": "2.0.0-rc.6",
     "type": "version"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.0.0-rc.4.tgz",
-  "_shasum": "8653d31018c54c65a6d88864bb0af8d024691788",
+  "_resolved": "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.0.0-rc.6.tgz",
+  "_shasum": "f37605fe2e666c6782267a1d7fe268f9ef1ada17",
   "_shrinkwrap": null,
-  "_spec": "@angular/platform-browser-dynamic@2.0.0-rc.4",
-  "_where": "c:\\users\\vdurano\\documents\\visual studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge",
+  "_spec": "@angular/platform-browser-dynamic@2.0.0-rc.6",
+  "_where": "C:\\Users\\vdurano\\Documents\\Visual Studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge",
   "author": {
     "name": "angular"
   },
@@ -43,31 +43,31 @@
     "url": "https://github.com/angular/angular/issues"
   },
   "dependencies": {},
-  "description": "",
+  "description": "Angular 2 platform-browser-dynamic",
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "8653d31018c54c65a6d88864bb0af8d024691788",
-    "tarball": "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.0.0-rc.4.tgz"
+    "shasum": "f37605fe2e666c6782267a1d7fe268f9ef1ada17",
+    "tarball": "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.0.0-rc.6.tgz"
   },
   "homepage": "https://github.com/angular/angular#readme",
   "installable": true,
-  "jsnext:main": "esm/index.js",
   "license": "MIT",
-  "main": "index.js",
+  "main": "bundles/platform-browser-dynamic.umd.js",
   "maintainers": [
     {
       "name": "angular",
       "email": "angular-core+npm@google.com"
     }
   ],
+  "module": "index.js",
   "name": "@angular/platform-browser-dynamic",
   "optionalDependencies": {},
   "peerDependencies": {
-    "@angular/common": "^2.0.0-rc.4",
-    "@angular/compiler": "^2.0.0-rc.4",
-    "@angular/core": "^2.0.0-rc.4",
-    "@angular/platform-browser": "^2.0.0-rc.4"
+    "@angular/common": "^2.0.0-rc.6",
+    "@angular/compiler": "^2.0.0-rc.6",
+    "@angular/core": "^2.0.0-rc.6",
+    "@angular/platform-browser": "^2.0.0-rc.6"
   },
   "repository": {
     "type": "git",
@@ -75,5 +75,5 @@
   },
   "scripts": {},
   "typings": "index.d.ts",
-  "version": "2.0.0-rc.4"
+  "version": "2.0.0-rc.6"
 }

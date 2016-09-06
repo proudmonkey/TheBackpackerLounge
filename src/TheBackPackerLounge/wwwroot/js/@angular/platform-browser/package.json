@@ -1,18 +1,18 @@
 {
   "_args": [
     [
-      "@angular/platform-browser@2.0.0-rc.4",
-      "c:\\users\\vdurano\\documents\\visual studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge"
+      "@angular/platform-browser@2.0.0-rc.6",
+      "C:\\Users\\vdurano\\Documents\\Visual Studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge"
     ]
   ],
-  "_from": "@angular/platform-browser@2.0.0-rc.4",
-  "_id": "@angular/platform-browser@2.0.0-rc.4",
+  "_from": "@angular/platform-browser@2.0.0-rc.6",
+  "_id": "@angular/platform-browser@2.0.0-rc.6",
   "_inCache": true,
   "_location": "/@angular/platform-browser",
   "_nodeVersion": "5.4.1",
   "_npmOperationalInternal": {
     "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/platform-browser-2.0.0-rc.4.tgz_1467308878452_0.6667994738090783"
+    "tmp": "tmp/platform-browser-2.0.0-rc.6.tgz_1472686624669_0.24030304024927318"
   },
   "_npmUser": {
     "email": "angular-core+npm@google.com",
@@ -22,20 +22,20 @@
   "_phantomChildren": {},
   "_requested": {
     "name": "@angular/platform-browser",
-    "raw": "@angular/platform-browser@2.0.0-rc.4",
-    "rawSpec": "2.0.0-rc.4",
+    "raw": "@angular/platform-browser@2.0.0-rc.6",
+    "rawSpec": "2.0.0-rc.6",
     "scope": "@angular",
-    "spec": "2.0.0-rc.4",
+    "spec": "2.0.0-rc.6",
     "type": "version"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-2.0.0-rc.4.tgz",
-  "_shasum": "519e9057b5cc73f0f615c54d45a1c185956df7d1",
+  "_resolved": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-2.0.0-rc.6.tgz",
+  "_shasum": "5dc7b05be6c74655bbfd45f6afbe2c9ecaeaceff",
   "_shrinkwrap": null,
-  "_spec": "@angular/platform-browser@2.0.0-rc.4",
-  "_where": "c:\\users\\vdurano\\documents\\visual studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge",
+  "_spec": "@angular/platform-browser@2.0.0-rc.6",
+  "_where": "C:\\Users\\vdurano\\Documents\\Visual Studio 2015\\Projects\\TheBackPackerLounge\\src\\TheBackPackerLounge",
   "author": {
     "name": "angular"
   },
@@ -43,30 +43,29 @@
     "url": "https://github.com/angular/angular/issues"
   },
   "dependencies": {},
-  "description": "",
+  "description": "Angular 2 platform-browser",
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "519e9057b5cc73f0f615c54d45a1c185956df7d1",
-    "tarball": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-2.0.0-rc.4.tgz"
+    "shasum": "5dc7b05be6c74655bbfd45f6afbe2c9ecaeaceff",
+    "tarball": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-2.0.0-rc.6.tgz"
   },
   "homepage": "https://github.com/angular/angular#readme",
   "installable": true,
-  "jsnext:main": "esm/index.js",
   "license": "MIT",
-  "main": "index.js",
+  "main": "bundles/platform-browser.umd.js",
   "maintainers": [
     {
       "name": "angular",
       "email": "angular-core+npm@google.com"
     }
   ],
+  "module": "index.js",
   "name": "@angular/platform-browser",
   "optionalDependencies": {},
   "peerDependencies": {
-    "@angular/common": "^2.0.0-rc.4",
-    "@angular/compiler": "^2.0.0-rc.4",
-    "@angular/core": "^2.0.0-rc.4"
+    "@angular/common": "^2.0.0-rc.6",
+    "@angular/core": "^2.0.0-rc.6"
   },
   "repository": {
     "type": "git",
@@ -74,5 +73,5 @@
   },
   "scripts": {},
   "typings": "index.d.ts",
-  "version": "2.0.0-rc.4"
+  "version": "2.0.0-rc.6"
 }

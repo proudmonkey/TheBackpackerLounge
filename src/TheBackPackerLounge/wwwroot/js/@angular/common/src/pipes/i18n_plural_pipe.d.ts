@@ -20,9 +20,16 @@ import { NgLocalization } from '../localization';
  *  ## Example
  *
  *  ```
- *  <div>
- *    {{ messages.length | i18nPlural: messageMapping }}
- *  </div>
+ *  @Component({
+ *    selector: 'app',
+ *    template: `
+ *      <div>
+ *        {{ messages.length | i18nPlural: messageMapping }}
+ *      </div>
+ *    `,
+ *    // best practice is to define the locale at the application level
+ *    providers: [{provide: LOCALE_ID, useValue: 'en_US'}]
+ *  })
  *
  *  class MyApp {
  *    messages: any[];

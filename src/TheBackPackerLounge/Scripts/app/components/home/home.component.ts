@@ -1,6 +1,4 @@
 ﻿import {Component} from "@angular/core";
-import {LoungeListComponent} from "../lounge/lounge-list.component";
-import {PlaceListComponent} from "../explore/place-list.component";
 
 @Component({
     selector: "home",
@@ -22,10 +20,6 @@ import {PlaceListComponent} from "../explore/place-list.component";
             <div class="div-clear"></div>
         </div>
     `,
-    directives: [
-        LoungeListComponent,
-        PlaceListComponent
-    ],
     styles: [`
         .div-wrapper {
           margin-right: 300px;

@@ -73,13 +73,11 @@ export declare var LIFECYCLE_HOOKS_VALUES: LifecycleHooks[];
  * export class App {
  *   value = 0;
  * }
- *
- * bootstrap(App).catch(err => console.error(err));
  * ```
  * @stable
  */
 export declare abstract class OnChanges {
-    abstract ngOnChanges(changes: SimpleChanges): any;
+    abstract ngOnChanges(changes: SimpleChanges): void;
 }
 /**
  * Implement this interface to execute custom initialization logic after your directive's
@@ -118,13 +116,11 @@ export declare abstract class OnChanges {
  * export class App {
  *   hasChild = true;
  * }
- *
- * bootstrap(App).catch(err => console.error(err));
- *  ```
+ * ```
  * @stable
  */
 export declare abstract class OnInit {
-    abstract ngOnInit(): any;
+    abstract ngOnInit(): void;
 }
 /**
  * Implement this interface to supplement the default change detection algorithm in your directive.
@@ -194,7 +190,7 @@ export declare abstract class OnInit {
  * @stable
  */
 export declare abstract class DoCheck {
-    abstract ngDoCheck(): any;
+    abstract ngDoCheck(): void;
 }
 /**
  * Implement this interface to get notified when your directive is destroyed.
@@ -231,8 +227,6 @@ export declare abstract class DoCheck {
  * export class App {
  *   hasChild = true;
  * }
- *
- * bootstrap(App).catch(err => console.error(err));
  * ```
  *
  *
@@ -287,7 +281,7 @@ export declare abstract class DoCheck {
  * @stable
  */
 export declare abstract class OnDestroy {
-    abstract ngOnDestroy(): any;
+    abstract ngOnDestroy(): void;
 }
 /**
  * Implement this interface to get notified when your directive's content has been fully
@@ -336,13 +330,11 @@ export declare abstract class OnDestroy {
  * })
  * export class App {
  * }
- *
- * bootstrap(App).catch(err => console.error(err));
  * ```
  * @stable
  */
 export declare abstract class AfterContentInit {
-    abstract ngAfterContentInit(): any;
+    abstract ngAfterContentInit(): void;
 }
 /**
  * Implement this interface to get notified after every check of your directive's content.
@@ -386,13 +378,11 @@ export declare abstract class AfterContentInit {
  * export class App {
  *   hasContent = true;
  * }
- *
- * bootstrap(App).catch(err => console.error(err));
  * ```
  * @stable
  */
 export declare abstract class AfterContentChecked {
-    abstract ngAfterContentChecked(): any;
+    abstract ngAfterContentChecked(): void;
 }
 /**
  * Implement this interface to get notified when your component's view has been fully initialized.
@@ -435,13 +425,11 @@ export declare abstract class AfterContentChecked {
  * })
  * export class App {
  * }
- *
- * bootstrap(App).catch(err => console.error(err));
  * ```
  * @stable
  */
 export declare abstract class AfterViewInit {
-    abstract ngAfterViewInit(): any;
+    abstract ngAfterViewInit(): void;
 }
 /**
  * Implement this interface to get notified after every check of your component's view.
@@ -487,11 +475,9 @@ export declare abstract class AfterViewInit {
  * })
  * export class App {
  * }
- *
- * bootstrap(App).catch(err => console.error(err));
  * ```
  * @stable
  */
 export declare abstract class AfterViewChecked {
-    abstract ngAfterViewChecked(): any;
+    abstract ngAfterViewChecked(): void;
 }

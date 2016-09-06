@@ -1,9 +1,7 @@
 ﻿import {Component, Input, OnInit} from "@angular/core";
-import {HTTP_PROVIDERS} from "@angular/http";
 import {Router} from "@angular/router";
 import {Place} from "../../viewmodels/place";
 import {AppService} from "../../services/app.service";
-import {PlaceDetailComponent} from "./place-detail.component";
 
 @Component({
     selector: "place-list",
@@ -23,12 +21,7 @@ import {PlaceDetailComponent} from "./place-detail.component";
         ul.items li:hover { 
             background-color: #E8FAEC; 
         }
-    `],
-    directives: [PlaceDetailComponent],
-    providers: [
-        HTTP_PROVIDERS,
-        AppService
-    ]
+    `]
 })
 
 export class PlaceListComponent implements OnInit {

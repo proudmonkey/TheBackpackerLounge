@@ -49,6 +49,7 @@ namespace TheBackPackerLounge.Controllers
             }
             return list;
         }
+
         private JsonSerializerSettings DefaultJsonSettings
         {
             get
@@ -75,7 +76,6 @@ namespace TheBackPackerLounge.Controllers
                 return 50;
             }
         }
-
     }
 
 }

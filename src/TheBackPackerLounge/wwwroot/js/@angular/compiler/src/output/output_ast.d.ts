@@ -109,7 +109,7 @@ export declare enum BuiltinVar {
     CatchStack = 3,
 }
 export declare class ReadVarExpr extends Expression {
-    name: any;
+    name: string;
     builtin: BuiltinVar;
     constructor(name: string | BuiltinVar, type?: Type);
     visitExpression(visitor: ExpressionVisitor, context: any): any;
@@ -139,7 +139,7 @@ export declare class WritePropExpr extends Expression {
 export declare enum BuiltinMethod {
     ConcatArray = 0,
     SubscribeObservable = 1,
-    bind = 2,
+    Bind = 2,
 }
 export declare class InvokeMethodExpr extends Expression {
     receiver: Expression;
@@ -425,8 +425,8 @@ export declare function findReadVarNames(stmts: Statement[]): Set<string>;
 export declare function variable(name: string, type?: Type): ReadVarExpr;
 export declare function importExpr(id: CompileIdentifierMetadata, typeParams?: Type[]): ExternalExpr;
 export declare function importType(id: CompileIdentifierMetadata, typeParams?: Type[], typeModifiers?: TypeModifier[]): ExternalType;
-export declare function literal(value: any, type?: Type): LiteralExpr;
 export declare function literalArr(values: Expression[], type?: Type): LiteralArrayExpr;
 export declare function literalMap(values: Array<Array<string | Expression>>, type?: MapType): LiteralMapExpr;
 export declare function not(expr: Expression): NotExpr;
 export declare function fn(params: FnParam[], body: Statement[], type?: Type): FunctionExpr;
+export declare function literal(value: any, type?: Type): LiteralExpr;

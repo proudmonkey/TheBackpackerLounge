@@ -1,21 +1,12 @@
-import { Type } from '@angular/core';
 /**
- * Shorthand set of providers used for building Angular forms.
- *
- * ### Example
- *
- * ```typescript
- * bootstrap(MyApp, [FORM_PROVIDERS]);
- * ```
- *
- * @experimental
+ * The ng module for forms.
+ * @stable
  */
-export declare const FORM_PROVIDERS: Type[];
+export declare class FormsModule {
+}
 /**
- * @experimental
+ * The ng module for reactive forms.
+ * @stable
  */
-export declare function disableDeprecatedForms(): any[];
-/**
- * @experimental
- */
-export declare function provideForms(): any[];
+export declare class ReactiveFormsModule {
+}

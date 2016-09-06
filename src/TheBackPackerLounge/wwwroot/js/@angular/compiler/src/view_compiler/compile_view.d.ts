@@ -5,11 +5,11 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { ViewType } from '../../core_private';
-import { CompiledAnimation } from '../animation/animation_compiler';
-import { CompileDirectiveMetadata, CompilePipeMetadata, CompileTokenMap } from '../compile_metadata';
+import { CompiledAnimationTriggerResult } from '../animation/animation_compiler';
+import { CompileDirectiveMetadata, CompilePipeMetadata } from '../compile_metadata';
 import { CompilerConfig } from '../config';
 import * as o from '../output/output_ast';
+import { ViewType } from '../private_import_core';
 import { CompileBinding } from './compile_binding';
 import { CompileElement, CompileNode } from './compile_element';
 import { CompileMethod } from './compile_method';
@@ -21,11 +21,12 @@ export declare class CompileView implements NameResolver {
     genConfig: CompilerConfig;
     pipeMetas: CompilePipeMetadata[];
     styles: o.Expression;
+    animations: CompiledAnimationTriggerResult[];
     viewIndex: number;
     declarationElement: CompileElement;
     templateVariableBindings: string[][];
     viewType: ViewType;
-    viewQueries: CompileTokenMap<CompileQuery[]>;
+    viewQueries: Map<any, CompileQuery[]>;
     nodes: CompileNode[];
     rootNodesOrAppElements: o.Expression[];
     bindings: CompileBinding[];
@@ -56,9 +57,8 @@ export declare class CompileView implements NameResolver {
     literalArrayCount: number;
     literalMapCount: number;
     pipeCount: number;
-    animations: Map<string, CompiledAnimation>;
     componentContext: o.Expression;
-    constructor(component: CompileDirectiveMetadata, genConfig: CompilerConfig, pipeMetas: CompilePipeMetadata[], styles: o.Expression, animations: CompiledAnimation[], viewIndex: number, declarationElement: CompileElement, templateVariableBindings: string[][]);
+    constructor(component: CompileDirectiveMetadata, genConfig: CompilerConfig, pipeMetas: CompilePipeMetadata[], styles: o.Expression, animations: CompiledAnimationTriggerResult[], viewIndex: number, declarationElement: CompileElement, templateVariableBindings: string[][]);
     callPipe(name: string, input: o.Expression, args: o.Expression[]): o.Expression;
     getLocal(name: string): o.Expression;
     createLiteralArray(values: o.Expression[]): o.Expression;
